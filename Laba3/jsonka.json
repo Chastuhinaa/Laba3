@@ -1,0 +1,38 @@
+[
+  {
+    "IsSelected": false,
+    "Discipline": "Диференціальні рівняння",
+    "Teacher": "Ярослав Троценко",
+    "Audience": 22,
+    "Control": "Екзамен",
+    "Time": "12:00",
+    "Date": "25.11.2024"
+  },
+  {
+    "IsSelected": false,
+    "Discipline": "Математичеа логіка",
+    "Teacher": "Степан Шкільняк",
+    "Audience": 303,
+    "Control": "Екзамен",
+    "Time": "12:00",
+    "Date": "03.12.2025"
+  },
+  {
+    "IsSelected": false,
+    "Discipline": "ООП",
+    "Teacher": "Людмила Омельчук",
+    "Audience": 404,
+    "Control": "Екзамен",
+    "Time": "14:00",
+    "Date": "06.12.2024"
+  },
+  {
+    "IsSelected": false,
+    "Discipline": "Програмування",
+    "Teacher": "Тетяна Карнаух",
+    "Audience": 505,
+    "Control": "Залік",
+    "Time": "16:00",
+    "Date": "08.12.2024"
+  }
+]

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Laba3.AddView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AddView"
+    BackgroundColor="LightPink">
+    <ScrollView>
+
+        <StackLayout Padding="10" Spacing="20">
+            <Label
+                Margin="0,0,0,20"
+                FontAttributes="Bold"
+                FontSize="Title"
+                HorizontalOptions="Center"
+                Text="Додати дисципліну"
+                TextColor="Black"/>
+            <HorizontalStackLayout>
+
+                <Label Text="Час:" TextColor="Black" Margin="0,0,0,10" />
+            
+                <Entry
+                Margin="0,0,0,10"
+                Placeholder="Введіть час"
+                Text="{Binding Date}" 
+                TextColor="White"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Дата:" TextColor="Black" Margin="0,0,0,10" />
+                
+                <Entry
+                Margin="0,0,0,10"
+                Placeholder="Введіть дату"
+                Text="{Binding Time}"
+                TextColor="White"
+                />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Дисципліна:" TextColor="Black" Margin="0,0,0,10" />
+                
+                <Entry
+                Margin="0,0,0,10"
+                Placeholder="Введіть назву дисципліни"
+                Text="{Binding Discipline}"
+                TextColor="White"/>
+                </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Викладач:" TextColor="Black"  Margin="0,0,0,10"/>
+                
+                <Entry
+                Margin="0,0,0,10"
+                Placeholder="Введіть П.І.П викладача"
+                Text="{Binding Teacher}"
+                TextColor="White"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+
+                    <Label Text="Тип контролю:" TextColor="Black" Margin="0,0,0,10" />
+                        
+                    <Entry
+                Margin="0,0,0,10"
+                Placeholder="Залік\Екзамен"
+                Text="{Binding Control}" 
+                TextColor="White"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Аудиторія:"  TextColor="Black" Margin="0,0,0,10" />
+                   
+                    <Entry
+                Margin="0,0,0,10"
+                Placeholder="Введіть номер аудиторії"
+                TextColor="White"
+                Text="{Binding Audience}" />
+                </HorizontalStackLayout>
+
+                    <Button
+                Margin="0,20,0,0"
+                Clicked="SubmitClicked"
+                HorizontalOptions="End"
+                Text="Submit"
+                VerticalOptions="End"
+                WidthRequest="100" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

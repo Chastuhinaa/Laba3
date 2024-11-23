@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Laba3.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Plum">
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Clicked="OpenJsonFileClicked" Text="Open" />
+            <MenuFlyoutItem Clicked="SaveClicked" Text="Save" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            
+            <Label
+                Text="Графік контролю з дисциплін"
+                FontSize="Title"
+                HorizontalOptions="Center"
+                TextColor="Black"
+                Margin="0,10,0,20" />
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Grid
+                        Margin="0"
+                        HorizontalOptions="Center"
+                        WidthRequest="1600">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="350" />
+                            <ColumnDefinition Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="1" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Дата" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Час" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="3" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Аудиторія" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="4" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Тип контролю" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="5" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Дисципліна" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="6" Stroke="Black" StrokeThickness="1">
+                            <Label HorizontalOptions="Center" Text="Викладач" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                    </Grid>
+
+                    <CollectionView Margin="0,0" ItemsSource="{Binding}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Margin="0"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="1600">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="350" />
+                                        <ColumnDefinition Width="350" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Row="0" Grid.Column="1" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Date}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="2" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Time}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="3" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Audience}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="4" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Control}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="5" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Discipline}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="6" Stroke="Black" StrokeThickness="1">
+                                        <Label HorizontalOptions="Center" Text="{Binding Teacher}" TextColor="Black" VerticalOptions="Center" />
+                                    </Border>
+
+                                    <RadioButton Grid.Row="0" Grid.Column="0" GroupName="LessonSelection" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <HorizontalStackLayout Padding="0,0,0,0" Margin="0,50,0,0" HorizontalOptions="FillAndExpand" Spacing="10" VerticalOptions="Center">
+                        <Label Padding="0,10" HorizontalOptions="FillAndExpand" Text="Search:" TextColor="Black" VerticalOptions="Center" />
+                        <Entry x:Name="searchEntry" HorizontalOptions="FillAndExpand" Placeholder="Enter text here" BackgroundColor="MediumPurple" VerticalOptions="Center" />
+                        <Picker x:Name="searchPicker" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="MediumPurple" TextColor="White">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Date</x:String>
+                                    <x:String>Teacher</x:String>
+                                    <x:String>Discipline</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        <Button x:Name="CounterBtn7" BackgroundColor="#51425f" Clicked="SearchClicked" HorizontalOptions="Center" Text="Submit" TextColor="#fff" />
+                        <Button x:Name="CounterBtn8" BackgroundColor="#51425f" Clicked="SearchBackClicked" HorizontalOptions="Center" Text="Back" TextColor="#fff" />
+                        <Button x:Name="CounterBtn4" BackgroundColor="MediumPurple" Clicked="AddClicked" HorizontalOptions="Center" Text="Add" TextColor="#fff" />
+                        <Button x:Name="CounterBtn" BackgroundColor="MediumPurple" Clicked="EditClicked" HorizontalOptions="Center" Text="Edit" TextColor="#fff" />
+                        <Button x:Name="CounterBtn2" BackgroundColor="MediumPurple" Clicked="DeleteClicked" HorizontalOptions="Center" Text="Delete" TextColor="#fff" />
+                        <Button x:Name="ExitButton" BackgroundColor="MediumPurple"   Clicked="ExitClicked" HorizontalOptions="Center" Text="Exit" TextColor="#fff" />
+                        <Button x:Name="About" BackgroundColor="MediumPurple" Clicked="AboutClicked" HorizontalOptions="Center" Text="About" TextColor="#fff" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
