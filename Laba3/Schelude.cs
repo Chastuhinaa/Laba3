@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
@@ -56,21 +56,21 @@ namespace Laba3
             this.Data = this.CurrentBuffer;
         }
 
-        public void AddLesson(string Date, string time, string discipline, string teacher, int audience, string Control)
+        public void AddLesson( string Date, string time, string discipline, string teacher, int audience, string Control)
         {
 
-            this.Data.Add(new Lesson(time, Date, discipline, teacher, audience, Control));
+            this.Data.Add(new Lesson(Date, time, discipline, teacher, audience, Control));
         }
-        
 
-        public void EditLesson(string time, string Date, string discipline, string teacher, int audience, string Control)
+
+        public void EditLesson(string date, string time, string discipline, string teacher, int audience, string control)
         {
-           
-            this.Data[this.index] = new Lesson(time, Date, discipline, teacher, audience, Control);
+            this.Data[this.index] = new Lesson(date, time, discipline, teacher, audience, control);
             LessonUpdated?.Invoke();
         }
 
-    
+
+
         public void DeleteArticle()
         {
             this.FindIndex();
