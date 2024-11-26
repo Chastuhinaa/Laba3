@@ -1,11 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-using System.Text.Json;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 
 
@@ -69,18 +62,29 @@ namespace Laba3
             }
         }
 
-        private void DeleteClicked(object sender, EventArgs e)
+        private async void DeleteClicked(object sender, EventArgs e)
         {
             if (mainPageLocker)
             {
-                fileObject.DeleteArticle();
-                UpdateArticlesView();
+                bool isConfirmed = await DisplayAlert(
+                    "Підтвердження",
+                    "Ви впевнені, що хочете видалити цей елемент?",
+                    "Так",
+                    "Ні"
+                );
+
+                if (isConfirmed)
+                {
+                    fileObject.DeleteArticle();
+                    UpdateArticlesView();
+                }
             }
             else
             {
-                DisplayAlert("Помилка", "Не залишилося елементівt", "ОК");
+                await DisplayAlert("Помилка", "Не залишилося елементів", "ОК");
             }
         }
+
 
         private void UpdateArticlesView()
         {
@@ -114,27 +118,50 @@ namespace Laba3
             OpenWindow(new AboutView());
         }
 
-        private void OpenJsonFileClicked(object sender, EventArgs e)
+        private async void OpenJsonFileClicked(object sender, EventArgs e)
         {
             try
             {
-                if (fileManager.OpenFile("D:\\Laba_3\\Laba3\\jsonka.json"))
+               
+                var fileResult = await FilePicker.Default.PickAsync(new PickOptions
                 {
-                    DisplayAlert("Успішно", "Файл успішно відкрито", "OK");
-                    UpdateArticlesView();
-                    mainPageLocker = true;
+                    PickerTitle = "Виберіть JSON-файл",
+                    FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+            {
+                { DevicePlatform.WinUI, new[] { ".json" } },
+                { DevicePlatform.MacCatalyst, new[] { "json" } },
+                { DevicePlatform.iOS, new[] { "json" } },
+                { DevicePlatform.Android, new[] { "application/json" } },
+            })
+                });
+
+                if (fileResult != null)
+                {
+                    var filePath = fileResult.FullPath;
+
+                    if (fileManager.OpenFile(filePath))
+                    {
+                        await DisplayAlert("Успішно", "Файл успішно відкрито.", "OK");
+                        UpdateArticlesView();
+                        mainPageLocker = true;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Помилка", "Помилка читання файлу. Виберіть інший.", "OK");
+                        mainPageLocker = false;
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Помилка", "Помилка читання файлу. Виберіть інший", "OK");
-                    mainPageLocker = false;
+                    await DisplayAlert("Скасовано", "Файл не було обрано.", "OK");
                 }
             }
             catch (Exception ex)
             {
-                DisplayAlert("Помилка", "Неможливо відкрити файл: " + ex.Message, "OK");
+                await DisplayAlert("Помилка", "Неможливо відкрити файл: " + ex.Message, "OK");
             }
         }
+
         private async void ExitClicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Підтвердити вихід", "Ви впевнені, що хочете вийти?", "Так", "Ні");
