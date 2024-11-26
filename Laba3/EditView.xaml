@@ -51,26 +51,26 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Час"
+                                Text="Дата"
                                 VerticalOptions="Center" />
 
                             <Entry
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 HorizontalOptions="Center"
-                                Text="{Binding Time}"
+                                Text="{Binding Date}"
                                 VerticalOptions="Center" />
                             <Label
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Дата"
+                                Text="Час"
                                 VerticalOptions="Center" />
                             <Entry
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 HorizontalOptions="Center"
-                                Text="{Binding Date}"
+                                Text="{Binding Time}"
                                 VerticalOptions="Center" />
 
                             <Label
